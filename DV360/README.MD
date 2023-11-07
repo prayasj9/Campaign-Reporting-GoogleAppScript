@@ -45,5 +45,5 @@ The script includes error handling for various stages of the process to log deta
 
 - Ensure the variables are properly configured before executing the script.
 - Check the Logs in Google Apps Script Editor for any error messages during execution.
-- You can reach me [alpray.com](https://alpray.com/)
+- You can reach me at [alpray.com](https://alpray.com/)
 ---
