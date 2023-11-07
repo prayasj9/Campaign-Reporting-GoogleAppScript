@@ -1,0 +1,87 @@
+const CLIENT_ID = "";//https://developers.google.com/display-video/api/guides/getting-started/overview#generate_credentials
+const CLIENT_SECRET = "";
+const REFRESH_TOKEN = "";//with scope - https://www.googleapis.com/auth/display-video	
+const URL = "https://www.googleapis.com/doubleclickbidmanager/v1.1/query";
+const SPREADSHEET_ID = "";
+const SHEET_NAME = "";
+
+function getAccessToken() {
+  try {
+    var option = {
+      'method': 'POST',
+      'Content-Type': 'application/json',
+      'muteHttpExceptions': false,
+    };
+
+    var response = UrlFetchApp.fetch("https://accounts.google.com/o/oauth2/token?grant_type=refresh_token&client_id=" + CLIENT_ID + "&redirect_uri=http://localhost/&client_secret=" + CLIENT_SECRET + "&refresh_token=" + REFRESH_TOKEN, option);
+
+    var responseText = response.getContentText();
+    var responseJson = JSON.parse(responseText);
+    var accessToken = responseJson.access_token;
+
+    return accessToken;
+
+  } catch (error) {
+    throw new Error(`Access Token Error: ${error}`);
+  }
+}
+
+
+function pullScheduledReport(reportID) {
+  try {
+    
+    var accessToken = getAccessToken();
+
+    var params = {
+      method: 'GET',
+      contentType: 'application/json',
+      headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/json' },
+      muteHttpExceptions: false,
+    };
+
+    var response = UrlFetchApp.fetch(URL+'/' + reportID, params);
+    var responseJson = JSON.parse(response)
+    var reportUrl = responseJson.metadata.googleCloudStoragePathForLatestReport
+
+    importCSVFromUrl(reportUrl)
+  
+  }
+  catch (e) {
+    Logger.log(e)
+  }
+}
+
+function importCSVFromUrl(reportUrl) {
+  try {
+    var csv = Utilities.parseCsv(UrlFetchApp.fetch(reportUrl));
+
+    writeDataToSheet(csv);
+
+  } catch (error) {
+    Logger.log(`Import CSV Error: ${error}`);
+  }
+}
+
+
+function writeDataToSheet(data) {
+  try {
+    var ss = SpreadsheetApp.openById(SPREADSHEET_ID)
+    var sheet = ss.getSheetByName(SHEET_NAME)
+
+    sheet.clear()
+
+    for (var i = 0; i < data.length; i++) {
+      if (data[i][0] == '') {
+        data.splice(i, data.length - 1)
+      }
+    }
+
+    if (data.length > 0) {
+      sheet.getRange(sheet.getLastRow() + 1, 1, data.length, data[0].length).setValues(data);
+      SpreadsheetApp.flush()
+    }
+  } catch (error) {
+    Logger.log(`Write Data Error: ${error}`);
+  }
+
+}
