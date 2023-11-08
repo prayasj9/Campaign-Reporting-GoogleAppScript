@@ -3,7 +3,7 @@
 
 ## Leveraging REST APIs in Google Apps Script for Consolidating Campaign Reports into Google Sheets
 
-Welcome to the collection of scripts provided by [Alpray.com](https://www.alpray.com), designed to streamline the process of retrieving campaign data from various advertising platforms and seamlessly integrating these reports with Google Sheets.
+Welcome to the collection of scripts provided by [Alpray.com](https://alpray.com/), designed to streamline the process of retrieving campaign data from various advertising platforms and seamlessly integrating these reports with Google Sheets.
 
 ### Why This Repository?
 
@@ -25,7 +25,7 @@ Follow these steps to leverage the repository:
 
 ### About Alpray.com
 
-At [Alpray.com](https://www.alpray.com), we are a dedicated team of five experts specializing in business process automation. With a focus on Google Workspace Automation Consultation, Google Apps Script Development, Google Sheet Automation, Excel VBA, and more, we empower businesses to streamline operations and enhance efficiency. Our commitment to precision and innovation ensures that you receive tailored solutions designed to help your business thrive in the digital age.
+At [Alpray.com](https://alpray.com/), we are a dedicated team of five experts specializing in business process automation. With a focus on Google Workspace Automation Consultation, Google Apps Script Development, Google Sheet Automation, Excel VBA, and more, we empower businesses to streamline operations and enhance efficiency. Our commitment to precision and innovation ensures that you receive tailored solutions designed to help your business thrive in the digital age.
 
 ### Contribution and Support
 
