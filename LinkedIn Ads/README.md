@@ -39,4 +39,3 @@ The script's primary function, `getReport()`, performs the following key tasks:
 You can find me at [alpray.com](https://alpray.com/)
 ---
 
-This README file is designed to provide guidance on utilizing the provided code to interact with the LinkedIn Advertising API for fetching campaign reports. Feel free to customize this README content to better suit your specific needs or add any additional instructions relevant to your use case.
